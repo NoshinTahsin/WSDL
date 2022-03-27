@@ -1,0 +1,32 @@
+Materials service:
+
+1. GetDeveloped Operation
+Input: unique material identifier and
+architect identifier
+Output: developed material document
+
+2. GetPurchased Operation
+Input: unique material identifier
+Output: purchased material document
+
+3. ReportStockLevels Operation
+Input: unique material identifier
+Output: stock level value
+
+Design service:
+
+1. AddBase
+Input: design document and architect
+identifier
+Output: acknowledgement code
+
+2. Simulate
+Input: materials and designs identifiers
+required for this project plus an architect
+identifier
+Output: simulation report document
+
+3. Get
+Input: unique design identifier and
+architect identifier
+Output: design document
