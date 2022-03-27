@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='utf-8'?>
+<wsdl:definitions 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:tns="https://localhost:44368/WebService1.asmx/GetDeveloped" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:ns1="http://schemas.xmlsoap.org/soap/http" 
+	name="HelloEndpointService" 
+	targetNamespace="https://localhost:44368/WebService1Material.asmx/GetDeveloped">
+
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://localhost:44368/WebService1Material.asmx/Design" elementFormDefault="qualified" targetNamespace="https://localhost:44368/WebService1Material.asmx/Design" version="1.0">
+
+        <xs:element name="AddBaseRequest" type="tns:AddBaseRequest"/>
+	    <xs:element name="AddBaseResponse" type="tns:AddBaseResponse"/>
+
+            <xs:complexType name="AddBaseRequest">
+                <xs:sequence>
+                    <xs:element name="DocRequest" type="tns:docRequest"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="docRequest">
+                <xs:sequence>
+                    <xs:element name="design_doc" type="xs:int"/>
+		    		<xs:element name="aid" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="AddBaseResponse">
+                <xs:sequence>
+                    <xs:element name="AckResponse" type="tns:ackResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="ackResponse">
+                <xs:sequence>
+                    <xs:element name="AckMessage" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+		<xs:element name="SimulateRequest" type="tns:SimulateRequest"/>
+	    <xs:element name="SimulateResponse" type="tns:SimulateResponse"/>
+
+            <xs:complexType name="SimulateRequest">
+                <xs:sequence>
+                    <xs:element name="SimulateRequestElement" type="tns:simulateRequest"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="simulateRequest">
+                <xs:sequence>
+                    <xs:element name="umid" type="xs:int"/>
+					<xs:element name="udid" type="xs:int"/>
+					<xs:element name="aid" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="SimulateResponse">
+                <xs:sequence>
+                    <xs:element name="SimulateResponseElement" type="tns:simulateResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+
+		<xs:element name="ReportStockLevelRequest" type="tns:ReportStockLevelRequest"/>
+	    <xs:element name="ReportStockLevelResponse" type="tns:ReportStockLevelResponse"/>
+
+            <xs:complexType name="ReportStockLevelRequest">
+                <xs:sequence>
+                    <xs:element name="StockLevelRequest" type="tns:stockLevelRequest"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="stockLevelRequest">
+                <xs:sequence>
+                    <xs:element name="umid" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="ReportStockLevelResponse">
+                <xs:sequence>
+                    <xs:element name="IntResponse" type="tns:intResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="intResponse">
+                <xs:sequence>
+                    <xs:element name="intResponse" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="GetDevelopedResponse">
+        <wsdl:part element="tns:GetDevelopedResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="GetDevelopedRequest">
+        <wsdl:part element="tns:GetDevelopedRequest" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+
+	<wsdl:message name="GetPurchasedResponse">
+        <wsdl:part element="tns:GetPurchasedResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="GetPurchasedRequest">
+        <wsdl:part element="tns:GetPurchasedRequest" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+
+	<wsdl:message name="ReportStockLevelResponse">
+        <wsdl:part element="tns:GetPurchasedResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="ReportStockLevelRequest">
+        <wsdl:part element="tns:GetPurchasedRequest" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:portType name="NumEndpoint">
+        <wsdl:operation name="GetDeveloped">
+            <wsdl:input message="tns:GetDevelopedRequest" name="GetDevelopedRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:GetDevelopedResponse" name="GetDevelopedResponse">
+            </wsdl:output>
+        </wsdl:operation>
+
+		 <wsdl:operation name="GetPurchased">
+            <wsdl:input message="tns:GetPurchasedRequest" name="GetPurchasedRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:GetPurchasedResponse" name="GetPurchasedResponse">
+            </wsdl:output>
+        </wsdl:operation>
+
+		<wsdl:operation name="ReportStockLevels">
+            <wsdl:input message="tns:ReportStockLevelRequest" name="ReportStockLevelRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:ReportStockLevelResponse" name="ReportStockLevelResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="SquareEndpointServiceSoapBinding" type="tns:NumEndpoint">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        
+		<wsdl:operation name="GetDeveloped">
+        <soap:operation soapAction="https://localhost:44368/WebService1Material.asmx/GetDeveloped" style="document"/>
+            <wsdl:input name="GetDevelopedRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="GetDevelopedResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+		<wsdl:operation name="GetPurchased">
+        <soap:operation soapAction="https://localhost:44368/WebService1Material.asmx/GetPurchased" style="document"/>
+            <wsdl:input name="GetPurchasedRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="GetPurchasedResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+		<wsdl:operation name="ReportStockLevels">
+        <soap:operation soapAction="https://localhost:44368/WebService1Material.asmx/ReportStockLevels" style="document"/>
+            <wsdl:input name="ReportStockLevelRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ReportStockLevelResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+    </wsdl:binding>
+        
+    <wsdl:service name="SquareEndpointService">
+        <wsdl:port binding="tns:SquareEndpointServiceSoapBinding" name="NumEndpointPort">
+            <soap:address location="https://localhost:44368/WebService1Material.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
